@@ -5,14 +5,14 @@ body {
 .container {
   width: 340px;
   padding-top: 180px;
-  background-image: url(./bg-2.jpg);
+  /*background-image: url(./bg-2.jpg);*/
   border-radius: 15px;
 }
 .calendar {
   color: white;
   background-color: rgba(0, 0, 0, 0.5);
   width: 340px;
-  height: 270px;
+  height: 400px;
   border-radius: 15px;
 }
 
