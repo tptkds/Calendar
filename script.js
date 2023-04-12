@@ -1,13 +1,15 @@
 const display = document.querySelector(".display");
-function getDate() {
-  const date = new Date();
-  const year = date.getFullYear();
-  const month = date.getMonth();
-  const firstDay = new Date(year, month, 1);
-  const lastDay = new Date(year, month + 1, 0);
-  const nowDay = date.getDay();
+const date = new Date();
+const year = date.getFullYear();
+const month = date.getMonth();
+const firstDay = new Date(year, month, 1);
+const lastDay = new Date(year, month + 1, 0);
+const nowDay = date.getDay();
+
+function getNowDate() {
   displayDate(year, month, firstDay, lastDay, nowDay);
 }
+
 
 function displayDate(y, m, fd, ld, nd) {
   let n = 0;
@@ -22,11 +24,11 @@ function displayDate(y, m, fd, ld, nd) {
         for (let j = prevMonth_lastDay - 6; j <= prevMonth_lastDay; j++) {
           const li = document.createElement("li");
           li.innerText = j;
+          li.className = 'notNow';
           ul.appendChild(li);
         }
       } else {
         // 첫째주가 월요일(1) 이상으로 시작할 때 => 저번달의 일부분만 ul에 표시해야 한다.
-        console.log(prevMonth_lastDay.getDate());
         for (
           // 저번달 마지막주 첫번째 ul에 추가
           let j = prevMonth_lastDay.getDate() - fd.getDay() + 1;
@@ -35,6 +37,7 @@ function displayDate(y, m, fd, ld, nd) {
         ) {
           const li = document.createElement("li");
           li.innerText = j;
+          li.className = 'notNow';
           ul.appendChild(li);
         }
         for (let j = fd.getDay(); j < 7; j++) {
@@ -59,6 +62,7 @@ function displayDate(y, m, fd, ld, nd) {
             for (let k = j + 1; k < 7; k++) {
               nextD++;
               const li = document.createElement("li");
+              li.className = 'notNow';
               li.innerText = nextD;
               ul.appendChild(li);
             }
@@ -66,15 +70,17 @@ function displayDate(y, m, fd, ld, nd) {
             for (let k = 0; k < 7; k++) {
               nextD++;
               const li = document.createElement("li");
+              li.className = 'notNow';
               li.innerText = nextD;
               ul.appendChild(li);
             }
           } else {
-            //6번쨰라인에서 마지막날에 도달했다면 남은 6번째라인의 빈공간을 다음달 날짜료 채운다.
+            //6번쨰라인에서 마지막날에 도달했다면 남은 6번째라인의 빈공간을 다음달 날짜로 채운다.
             let nextD = 0; //다음달 날짜시작
             for (let k = j + 1; k < 7; k++) {
               nextD++;
               const li = document.createElement("li");
+              li.className = 'notNow';
               li.innerText = nextD;
               ul.appendChild(li);
             }
@@ -88,4 +94,8 @@ function displayDate(y, m, fd, ld, nd) {
   }
 }
 
-getDate();
+function getPrevDate() {
+
+}
+
+getNowDate();

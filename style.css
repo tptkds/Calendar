@@ -3,16 +3,16 @@ body {
   margin: 0;
 }
 .container {
-  width: 340px;
+  width: 400px;
   padding-top: 180px;
   /*background-image: url(./bg-2.jpg);*/
   border-radius: 15px;
 }
 .calendar {
   color: white;
-  background-color: rgba(0, 0, 0, 0.5);
-  width: 340px;
-  height: 400px;
+  background-color: rgba(0, 0, 0, 0.3);
+  width: 400px;
+  height: 350px;
   border-radius: 15px;
 }
 
@@ -26,7 +26,7 @@ body {
   font-size: 16px;
 }
 header {
-  margin: 0 20px;
+  margin: 0 60px;
   padding: 20px 0;
   position: relative;
 }
@@ -38,17 +38,50 @@ header {
   font-size: 30px;
 }
 
+.week {
+  border-bottom: 1px solid white;
+  border-top: 1px solid white;
+}
+ul:last-child {
+  border-bottom: 1px solid white;
+}
 ul {
   list-style: none;
   padding: 5px 0;
-  margin: 0 20px;
+  margin: 0 60px;
   font-size: 16px;
   display: flex;
   flex-direction: row;
-  border-top: 1px solid white;
-  border-bottom: 1px solid white;
+
 }
 ul li {
   width: calc(100% / 7);
   text-align: center;
+}
+.calendar_main {
+  position: relative;
+}
+.prevBtn {
+position: absolute;
+left: 15px;
+top: 50%;
+}
+
+.nextBtn {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+}
+
+button {
+  border: none;
+  background-color: rgba(255,255,255,0.5) ;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  color: white;
+}
+
+.notNow {
+  color: rgba(255, 255, 255, 0.6);
 }
