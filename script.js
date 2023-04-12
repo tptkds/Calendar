@@ -1,18 +1,34 @@
-const display = document.querySelector(".display");
+const display_mom = document.querySelector(".display_mom");
+const prevBtn = document.querySelector(".prevBtn");
+const nextBtn = document.querySelector('.nextBtn');
 const date = new Date();
 const year = date.getFullYear();
 const month = date.getMonth();
-const firstDay = new Date(year, month, 1);
-const lastDay = new Date(year, month + 1, 0);
+let firstDay = new Date(year, month, 1);
+let lastDay = new Date(year, month + 1, 0);
 const nowDay = date.getDay();
 
+let nowMonth = date.getMonth();
+
+prevBtn.addEventListener("click", getPrevDate);
+
 function getNowDate() {
-  displayDate(year, month, firstDay, lastDay, nowDay);
+  displayDate(year, month, firstDay, lastDay);
 }
 
+function getPrevDate() {
+  nowMonth -= 1;
+  firstDay = new Date(year, nowMonth, 1);
+  lastDay = new Date(year, nowMonth + 1, 0);
+  document.querySelector('.display').remove();
+  displayDate(year, nowMonth, firstDay, lastDay);
+}
 
-function displayDate(y, m, fd, ld, nd) {
+function displayDate(y, m, fd, ld) {
   let n = 0;
+  const display = document.createElement('div');
+  display.className = 'display';
+  display_mom.appendChild(display);
   for (let i = 0; i < 6; i++) {
     // 6번째 라인까지 나타낸다, 첫번째라인과 마지막라인은 저번달 및 다음달의 날짜를 같이 표시한다.
     const ul = document.createElement("ul");
@@ -48,18 +64,21 @@ function displayDate(y, m, fd, ld, nd) {
         }
       }
     } else {
-      for (let j = 0; j < 7; j++) {
+        for (let j = 0; j < 7; j++) {
         n += 1;
         const li = document.createElement("li");
         li.innerText = n;
         ul.appendChild(li);
-
         if (n == ld.getDate()) {
           // n이 마지막날에 도달했다면 => 이제부터는 다음달 날짜가 표시된다.
+          console.log(n, ul)
           if (i == 4) {
             //5번째라인에서 마지막날에 도달했다면 남은 5번째라인의 빈공간 및 6번째라인을 다음달 날짜로 채운다.
             let nextD = 0; //다음달 날짜시작
+            console.log(n, ul)
             for (let k = j + 1; k < 7; k++) {
+              console.log(n, ul)
+              console.log(k)
               nextD++;
               const li = document.createElement("li");
               li.className = 'notNow';
@@ -92,10 +111,6 @@ function displayDate(y, m, fd, ld, nd) {
     display.appendChild(ul);
     if (n == ld.getDate()) break;
   }
-}
-
-function getPrevDate() {
-
 }
 
 getNowDate();
